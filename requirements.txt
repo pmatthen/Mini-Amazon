@@ -1,0 +1,15 @@
+blinker
+Click
+dominate
+Flask
+Flask-Bootstrap
+Flask-Mail
+itsdangerous
+Jinja2
+MarkupSafe
+pip
+pymongo
+setuptools
+visitor
+Werkzeug
+wheel

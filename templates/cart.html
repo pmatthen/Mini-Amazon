@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<br>
+	{% for product in cart_products %}
+		<h3>Product Name: {{ product['product_name'] }}</h3>
+		<h3>Quantity: {{ user_cart[product['_id']|string] }}</h3>
+		<h3>Price/item: Rs. {{ product['product_price'] }}/-</h3>
+			<form action="/remove_from_cart" method="POST">
+				<input type="hidden" name="object_id" value="{{ product['_id']|string }}"><br>
+				<input type="submit" value="Remove 1">
+			</form>
+			<form action="/add_to_cart" method="POST">
+				<input type="hidden" name="object_id" value="{{ product['_id']|string }}"><br>
+				<input type="submit" value="Add 1">
+			</form>
+		<br>
+		<br>
+	{% endfor %}
+
+	<h3>Order Total: Rs. {{ cart_total }}/-</h3>
+	
+	{% if cart_products %}
+		<form action="/buy_items_in_cart" method="POST">
+			<input type="submit" value="BUY ALL THE ITEMS!!">
+		</form>
+	{% endif %}
+
+{% endblock %}

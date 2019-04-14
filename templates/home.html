@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if session %}
+
+<p>Hello {{ session['username'] }}, you have logged in as a {{ session['c_type'] }}</p>
+<p></p>
+<p><a href="/logout">Logout?</a></p>
+<br>
+<p><a href="/all_products">Show All Products</a></p>
+
+	{% if session['c_type'] == 'seller' %}
+
+		<p><a href="/seller_products">Modify Your Products</a></p>
+
+		<!-- Create new page to add product, show seller products. Shift code from home to there. -->
+		<!-- Create new html page to show all products -->
+
+	{% endif %}
+
+{% else %}
+
+	<form autocomplete="off" action="/login" method="POST">
+		LOGIN HERE:<br><br>
+		Name:<br>
+		<input autocomplete="off" type="text" name="name" placeholder="enter your name..."><br>
+		<br>
+		Password:<br>
+		<input autocomplete="off" type="password" name="password" placeholder="enter your password">
+		<br><br>
+		<input autocomplete="off" type="submit" value="Submit">
+	</form>
+
+	<form autocomplete="off" action="/signup" method="POST">
+		<br><br>
+		SIGN UP HERE:<br>
+
+		<br>
+		Name:<br>
+		<input autocomplete="off" type="text" name="name" placeholder="enter your name..."><br>
+		
+		<br>
+		Email:<br>
+		<input autocomplete="off" type="text" name="email" placeholder="enter your email..."><br>
+		
+		<br>
+		Password:<br>
+		<input autocomplete="off" type="password" name="password" placeholder="enter your password"><br>
+
+		<br>
+		Re-enter Password:<br>
+		<input autocomplete="off" type="password" name="rpassword" placeholder="re-enter your password"><br>
+
+		<br>
+		Select Customer Type:<br>
+		<input type="radio" name="c_type" value="buyer" checked>Buyer<br>
+		<input type="radio" name="c_type" value="seller">Seller<br>
+
+		<br>
+		<input type="submit" value="Submit">
+	</form>
+{% endif %}
+
+{% endblock %}

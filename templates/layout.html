@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+	<title>{{ title }}</title>
+	{% else %}
+	<title>Amazon Rebuild</title>
+	{% endif %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+</head>
+<body>
+	{% if title %}
+	<h1>{{ title }}</h1>
+	{% else %}
+	<h1>Amazon Rebuild</h1>
+	{% endif %}
+
+	{% block content %}
+	{% endblock %}
+
+	{% if session['c_type'] == 'buyer' %}
+		{% if request.path != '/cart' %}
+			<p><a href="/cart">View Your Cart</a></p>
+		{% endif %}
+	{% endif %}
+
+</body>
+<footer>
+	<br>
+	<br>
+	{% if request.path != '/home' %}
+		<p><a href="/">Go Home</a></p>
+	{% endif %}
+	Copyright 2019
+</footer>
+</html>

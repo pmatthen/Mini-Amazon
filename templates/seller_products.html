@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<form autocomplete="off" action="/add_products" onSubmit="alert('Adding Product');" method="POST">
+		ADD PRODUCT:<br><br>
+		Product Name:<br>
+		<input autocomplete="off" type="text" name="product_name" placeholder="enter a product name..."><br>
+		<br>
+		Product Price:<br>
+		<input autocomplete="off" type="text" name="product_price" placeholder="enter a price">
+		<br><br>
+		Product Description:<br>
+		<input autocomplete="off" type="text" name="product_description" placeholder="enter a description..."><br>
+		<br>
+		<input autocomplete="off" type="submit" value="Submit">
+	</form>
+
+	<br>
+	<br>
+	{% for product in products %}
+		{% if product['seller_name'] == session['username'] %}
+			<h3>Product Name: {{product['product_name']}}</h3>
+			<h3>Product Price: {{product['product_price']}}</h3>
+			<h3>Product Description: {{product['product_description']}}</h3>
+			<br>
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}
