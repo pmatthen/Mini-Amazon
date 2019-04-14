@@ -97,7 +97,7 @@ def signup():
 	if user_exists(user_info['username']) is False:
 		if rpassword == user_info['password']:
 			if user_info['c_type'] == "buyer":
-				user_info['cart'] = []
+				user_info['cart'] = {}
 			create_user(user_info)
 			session['username'] = user_info['username']
 			session['c_type'] = user_info['c_type']
